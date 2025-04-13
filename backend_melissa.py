@@ -44,60 +44,6 @@ class Backend:
                     worked = True
         return worked
 
-    def three_opt(self) -> bool:
-        n = len(self.shortest_route)
-        worked = False
-        for i in range(1, n - 3):
-            j = i + 2
-            k = n - 2
-            moved = True
-            while j < k - 1:
-                new_route = (self.shortest_route[:i]
-                            + self.shortest_route[i: j + 1][::-1]
-                            + self.shortest_route[j + 1: k + 1][::-1]
-                            + self.shortest_route[k + 1:])
-                new_dist = self.calculate_dist(new_route)
-                if new_dist < self.min_dist:
-                    self.min_dist = new_dist
-                    self.shortest_route = new_route
-                    worked = True
-
-                if moved:
-                    j += 1
-                    moved = False
-                else:
-                    k -= 1
-                    moved = True
-        return worked
-
-    def four_opt(self) -> bool:
-        n = len(self.shortest_route)
-        worked = False
-        for i in range(1, n - 4):
-            j = i + 2
-            x = n - 2
-            k = (x + j) // 2
-            moved = True
-            while j < k - 1 & k < x - 1:
-                new_route = (self.shortest_route[:i]
-                             + self.shortest_route[i: j + 1][::-1]
-                             + self.shortest_route[j + 1: k + 1][::-1]
-                             + self.shortest_route[k + 1: x + 1][::-1]
-                             + self.shortest_route[x + 1:])
-                new_dist = self.calculate_dist(new_route)
-                if new_dist < self.min_dist:
-                    self.min_dist = new_dist
-                    self.shortest_route = new_route
-                    worked = True
-
-                if moved:
-                    j += 1
-                    moved = False
-                else:
-                    x -= 1
-                    moved = True
-        return worked
-
     def calculate_dist(self, route):
         total_dist = 0
         for i in range(len(route) - 1):
@@ -108,18 +54,6 @@ class Backend:
         result = True
         while result:
             if (self.two_opt()):
-                continue
-            else:
-                result = False
-        result = True
-        while result:
-            if (self.three_opt()):
-                continue
-            else:
-                result = False
-        result = True
-        while result:
-            if (self.four_opt()):
                 continue
             else:
                 result = False
