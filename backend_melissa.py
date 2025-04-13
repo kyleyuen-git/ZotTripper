@@ -1,4 +1,4 @@
-from math import acos, sin, cos
+from math import sin, cos, pi, atan2, sqrt
 
 class Backend:
     def __init__(self, start, points):
@@ -8,7 +8,12 @@ class Backend:
         self.min_dist = float('inf')
 
     def get_distance(self, p1, p2):
-        return 3959 * acos(sin(p1[0]) * sin(p2[0]) + cos(p1[0]) * cos(p2[0]) * cos(p2[1] - p1[1]))
+        R = 6371
+        dLat = ((p2[0] - p1[0]) * pi) / 180
+        dLng = ((p2[1] - p1[1]) * pi) / 180
+        a = sin(dLat / 2) ** 2 + cos(p1[0] * pi / 180) * cos(p2[0] * pi / 180) * sin(dLng / 2) ** 2
+        c = 2 * atan2(sqrt(a), sqrt(1 - a))
+        return R * c
 
     def create_distance_matrix(self):
         n = len(self.points)
