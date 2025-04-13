@@ -1,0 +1,9 @@
+.cards {
+  /* converted 100 pixels to rem */
+  display: grid;
+  margin-left: 5rem;
+  margin-right: 5rem;
+  margin-top: 5rem;
+  gap: 1rem;
+  grid-template-columns: 1fr 1fr 1fr;
+}

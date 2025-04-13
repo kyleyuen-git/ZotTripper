@@ -1,0 +1,42 @@
+.card {
+    display: flex;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 16px;
+    background-color: #fff;
+    max-width: 600px;
+    min-height: 200px;
+    margin: auto;
+  }
+  
+  .card-left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .card-left h4 {
+    margin-bottom: 10px;
+  }
+  
+  .picture {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border: 1px solid black;
+  }
+  
+  .card-right {
+    flex: 2;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .card-right p {
+    margin: 0;
+    font-size: 16px;
+  }
+  
